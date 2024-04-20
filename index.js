@@ -112,33 +112,14 @@ function onDeleteTodo(todoId) {
 }
 
 let editTodoItem = (labelId, editInputElId) => {
-  //let labelContainerEl = document.getElementById(labelContainerId);
+ 
   let labelEl = document.getElementById(labelId);
   let editInputEl = document.getElementById(editInputElId);
   if (labelEl.textContent !== "") {
-    /*let editButtonEl = document.getElementById("button" + uniqueNo);
-    let deleteIconContainerEl = document.getElementById(
-      "deleteIconContainer" + uniqueNo
-    );*/
-    //labelEl.textContent = "";
-    //labelEl.style.width = "3%";
+    
     labelEl.style.display = "none";
     editInputEl.style.display = "inline";
-    /*let editInputEl = document.createElement("input");
-    editInputEl.type = "text";
-    editInputEl.classList.add("edit-input-style");
-    labelContainerEl.removeChild(editButtonEl);
-    labelContainerEl.removeChild(deleteIconContainerEl);
-    labelContainerEl.appendChild(editInputEl);
-    labelContainerEl.appendChild(editButtonEl);
-    labelContainerEl.appendChild(deleteIconContainerEl);
-    editInputEl.addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-        labelEl.textContent = event.target.value;
-        labelContainerEl.removeChild(editInputEl);
-        labelEl.style.width = "82%";
-      }
-    });*/
+    
   }
 };
 
@@ -198,6 +179,15 @@ function createAndAppendTodo(todo) {
       editInputEl.style.display = "none";
       labelElement.style.width = "82%";
       labelElement.style.display = "inline";
+      let editedObj;
+      for (let each of todoList) {
+        let id = "todo" + each.uniqueNo;
+        if (id === todoId) {
+          editedObj = each;
+          break;
+        }
+      }
+      editedObj.text = event.target.value;
     }
     if (event.key === "Enter" && event.target.value === "") {
       editInputEl.style.display = "none";
